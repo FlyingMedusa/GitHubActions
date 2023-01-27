@@ -10,7 +10,7 @@ env:
   TF_VAR_GITHUB_OWNER: ${{ github.repository_owner }}
   TF_LOG: error
   ARM_USE_MSI: true
-  ARM_CLIENT_ID: ${{var.account_id}}
+  ARM_CLIENT_ID: ${terraform.account_id}
   ARM_SUBSCRIPTION_ID: "ac10c819-2836-4539-a08d-cf5c42a71d7a" # sub-edu-001
   ARM_TENANT_ID: "075ddcce-4e47-4d33-843f-c6b7fbc0ba52"
 
