@@ -7,7 +7,7 @@ variable "location" {
 # Resources naming
 #---------------------------------------------------------------
 
-variable "environment" {
+variable "name-core" {
   description = "The core part of resources naming"
   type        = string
 }

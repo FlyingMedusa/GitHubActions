@@ -1,11 +1,3 @@
-locals {
-  location        = "francecentral"
-  environment     = "ghactionstryout"
-  suffix          = "001"
-  subscription_id = ""
-  tenant_id       = ""
-}
-
 data "azurerm_client_config" "current" {}
 
 #------------------------------------------------------------------------------
@@ -13,7 +5,8 @@ data "azurerm_client_config" "current" {}
 #------------------------------------------------------------------------------
 
 resource "azurerm_resource_group" "main" {
-  name     = "rg-${var.environment}"
+  provider = azurerm
+  name     = "rg-${var.name-core}"
   location = var.location
 }
 
@@ -22,7 +15,8 @@ resource "azurerm_resource_group" "main" {
 #------------------------------------------------------------------------------
 
 resource "azurerm_storage_account" "main" {
-  name                     = "st${var.environment}${var.suffix}"
+  provider                 = azurerm
+  name                     = "st${var.name-core}${var.suffix}"
   resource_group_name      = azurerm_resource_group.main.name
   location                 = var.location
   account_tier             = "Standard"
@@ -35,7 +29,8 @@ resource "azurerm_storage_account" "main" {
 #------------------------------------------------------------------------------
 
 resource "azurerm_service_plan" "main" {
-  name                = "asp-${var.environment}-${var.suffix}"
+  provider            = azurerm
+  name                = "asp-${var.name-core}-${var.suffix}"
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
   os_type             = "Linux"
@@ -47,7 +42,8 @@ resource "azurerm_service_plan" "main" {
 #------------------------------------------------------------------------------
 
 resource "azurerm_windows_function_app" "main" {
-  name                = "func-${var.environment}-${var.suffix}"
+  provider            = azurerm
+  name                = "func-${var.name-core}-${var.suffix}"
   resource_group_name = azurerm_resource_group.main.name
   location            = var.location
 
