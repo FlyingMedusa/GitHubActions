@@ -1,0 +1,10 @@
+.git
+package.json
+package-lock.json
+/node_modules
+
+# Terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.terraform.lock.hcl
