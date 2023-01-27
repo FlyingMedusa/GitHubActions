@@ -7,12 +7,17 @@ on:
       - 'infra/**'
 env:
   TF_VAR_GITHUB_PAT: ${{ secrets.SECRET_GITHUB_PAT }}
+  TF_VAR_GITHUB_OWNER: ${{ github.repository_owner }}
+  TF_LOG: error
+  ARM_USE_MSI: true
+  ARM_CLIENT_ID: ""
+  ARM_SUBSCRIPTION_ID: "ef85463b-ad7a-4e85-986f-42e0736b253c" # Azure for Students
+  ARM_TENANT_ID: "73689ee1-b42f-4e25-a5f6-66d1f29bc092"       # UAM
 
 jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
-    environment: production
     defaults:
       run:
         shell: bash
