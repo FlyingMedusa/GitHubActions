@@ -2,8 +2,8 @@ locals {
   location        = "francecentral"
   name-core       = "ghactionstryout"
   suffix          = "001"
-  tenant_id       = "73689ee1-b42f-4e25-a5f6-66d1f29bc092" # UAM
-  subscription_id = "ef85463b-ad7a-4e85-986f-42e0736b253c"
+  tenant_id       = "075ddcce-4e47-4d33-843f-c6b7fbc0ba52"
+  subscription_id = "ac10c819-2836-4539-a08d-cf5c42a71d7a"
 }
 
 module "management" {
