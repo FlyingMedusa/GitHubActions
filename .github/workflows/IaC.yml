@@ -10,9 +10,9 @@ env:
   TF_VAR_GITHUB_OWNER: ${{ github.repository_owner }}
   TF_LOG: error
   ARM_USE_MSI: true
-  ARM_CLIENT_ID: ""
-  ARM_SUBSCRIPTION_ID: "ef85463b-ad7a-4e85-986f-42e0736b253c" # Azure for Students
-  ARM_TENANT_ID: "73689ee1-b42f-4e25-a5f6-66d1f29bc092"       # UAM
+  ARM_CLIENT_ID: ${{terraform.account_id}}
+  ARM_SUBSCRIPTION_ID: "ac10c819-2836-4539-a08d-cf5c42a71d7a" # sub-edu-001
+  ARM_TENANT_ID: "075ddcce-4e47-4d33-843f-c6b7fbc0ba52"
 
 jobs:
   terraform:
