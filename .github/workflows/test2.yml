@@ -1,10 +1,7 @@
 name: Test2
 
 on:
-  workflow_run:
-    workflows: ["Test1"]
-    types:
-     - completed
+ push:
 
 jobs:
   build:
