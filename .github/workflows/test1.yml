@@ -1,0 +1,20 @@
+name: Test1
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: SomeScriptFrst
+    timeout-minutes: 28800
+    env:
+      GITHUB_TOKEN: ${{ secrets.SECRET_GITHUB_PAT }}
+    runs-on:
+      - self-hosted
+      - 'name:place2-extra' # Change the name according to your platform name
+      - 'spot:false'
+      - 'uid:${{ matrix.name }}-${{ github.run_id }}-${{ github.run_number }}-${{ github.run_attempt }}'
+    steps:
+      - name: Say hello
+        run: |
+          echo "Hello"
