@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    uses: ./.github/workflows/test1.yml
+    uses: FlyingMedusa/GitHubActions/.github/workflows/test1.yml@f03b59367bc52a225e8ccaf8ad53805356b6d2e2
   build2:
     needs: [build]
     name: SomeScriptScnd2
