@@ -1,0 +1,14 @@
+name: Test1
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: SomeScriptFrst
+    timeout-minutes: 28800
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say hello
+        run: |
+          echo "Hello"
