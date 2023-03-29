@@ -8,16 +8,9 @@ on:
 
 jobs:
   build:
-    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event.workflow_run.conclusion == 'failure'}}
-    needs: Test1
-    name: SomeScriptScnd
-    timeout-minutes: 28800
-    runs-on: ubuntu-latest
-    steps:
-      - name: Say bye
-        run: |
-          echo "Bye"
+    uses: ./.github/workflows/test1.yml
   build2:
+    needs: [build]
     name: SomeScriptScnd2
     runs-on: ubuntu-latest
     steps:
