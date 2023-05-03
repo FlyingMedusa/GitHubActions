@@ -1,6 +1,11 @@
 name: 'IaC: Terraform'
 on: [push]
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 env:
   TF_VAR_GITHUB_PAT: ${{ secrets.SECRET_GITHUB_PAT }}
   TF_VAR_GITHUB_OWNER: ${{ github.repository_owner }}
