@@ -5,32 +5,31 @@ on:
     branches: [ "main" ]
     paths:
       - 'infra/**'
+
 env:
   TF_VAR_GITHUB_PAT: ${{ secrets.SECRET_GITHUB_PAT }}
   TF_VAR_GITHUB_OWNER: ${{ github.repository_owner }}
   TF_LOG: error
-  ARM_USE_MSI: true
-  ARM_CLIENT_ID: ${terraform.account_id}
-  ARM_SUBSCRIPTION_ID: "ac10c819-2836-4539-a08d-cf5c42a71d7a" # sub-edu-001
-  ARM_TENANT_ID: "075ddcce-4e47-4d33-843f-c6b7fbc0ba52"
-
-jobs:
+      
+jobs: 
   terraform:
-    name: 'Terraform'
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
-
     steps:
-    # Checkout the repository to the GitHub Actions runner
+    - name: 'Az CLI login'
+      uses: azure/login@v1
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  
     - name: Checkout
       uses: actions/checkout@v3
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
-      with:
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
     - name: Terraform Init
       run: terraform init
@@ -49,7 +48,3 @@ jobs:
     - name: Terraform Plan Status
       if: steps.plan.outcome == 'failure'
       run: exit 1
-      
-    - name: Terraform Apply
-      if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
-      run: terraform apply -auto-approve -input=false
