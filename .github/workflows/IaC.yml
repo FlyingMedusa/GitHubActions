@@ -1,10 +1,5 @@
 name: 'IaC: Terraform'
-
-on:
-  push:
-    branches: [ "main" ]
-    paths:
-      - 'infra/**'
+on: [push]
 
 env:
   TF_VAR_GITHUB_PAT: ${{ secrets.SECRET_GITHUB_PAT }}
