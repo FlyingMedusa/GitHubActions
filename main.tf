@@ -15,5 +15,4 @@ module "management" {
   suffix          = local.suffix
   tenant_id       = local.tenant_id
   subscription_id = local.subscription_id
-  github_pat      = var.GITHUB_PAT
 }

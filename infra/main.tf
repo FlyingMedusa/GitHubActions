@@ -1,12 +1,19 @@
 data "azurerm_client_config" "current" {}
 
+locals {
+  rg_name       = "rg-${var.name-core}"
+  storage_name  = "st${var.name-core}${var.suffix}"
+  asp_name      = "asp-${var.name-core}-${var.suffix}"
+  func_app_name = "func-${var.name-core}-${var.suffix}"
+}
+
 #------------------------------------------------------------------------------
 # Resource Group
 #------------------------------------------------------------------------------
 
 resource "azurerm_resource_group" "main" {
   provider = azurerm
-  name     = "rg-${var.name-core}"
+  name     = local.rg_name
   location = var.location
 }
 
@@ -16,7 +23,7 @@ resource "azurerm_resource_group" "main" {
 
 resource "azurerm_storage_account" "main" {
   provider                 = azurerm
-  name                     = "st${var.name-core}${var.suffix}"
+  name                     = local.storage_name
   resource_group_name      = azurerm_resource_group.main.name
   location                 = var.location
   account_tier             = "Standard"
@@ -30,7 +37,7 @@ resource "azurerm_storage_account" "main" {
 
 resource "azurerm_service_plan" "main" {
   provider            = azurerm
-  name                = "asp-${var.name-core}-${var.suffix}"
+  name                = local.asp_name
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
   os_type             = "Linux"
@@ -43,7 +50,7 @@ resource "azurerm_service_plan" "main" {
 
 resource "azurerm_windows_function_app" "main" {
   provider            = azurerm
-  name                = "func-${var.name-core}-${var.suffix}"
+  name                = local.func_app_name
   resource_group_name = azurerm_resource_group.main.name
   location            = var.location
 
