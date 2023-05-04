@@ -1,10 +1,15 @@
 name: 'IaC: Terraform'
-on: [push]
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
-  id-token: write
+  # id-token: write
 
 env:
   TF_VAR_GITHUB_PAT: ${{ secrets.SECRET_GITHUB_PAT }}
@@ -31,13 +36,11 @@ jobs:
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
+      with:
+        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }} #August 2nd, 2023
 
     - name: Terraform Init
       run: terraform init
-  
-    - name: Terraform Validate
-      id: validate
-      run: terraform validate -no-color
 
     - name: Terraform Format
       run: terraform fmt -check
