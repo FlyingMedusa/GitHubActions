@@ -7,7 +7,7 @@ variable "location" {
 variable "name-core" {
   description = "The core part of resources naming"
   type        = string
-  default     = "ghactionstryout"
+  default     = "marthamain"
 }
 
 variable "suffix" {
