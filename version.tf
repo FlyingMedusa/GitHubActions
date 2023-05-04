@@ -10,12 +10,7 @@ terraform {
     }
   }
 
-  backend "azurerm" {
-    storage_account_name = "csb10030000ad39d9a7"
-    container_name       = "tfstate"
-    key                  = "prod.terraform.tfstate"
-    use_azuread_auth     = true
-    tenant_id            = "075ddcce-4e47-4d33-843f-c6b7fbc0ba52"
-    subscription_id      = "ac10c819-2836-4539-a08d-cf5c42a71d7a" # sub-edu-001
+  backend "local" {
+    path = ".terraform\terraform.tfstate"
   }
 }
