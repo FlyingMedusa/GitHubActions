@@ -9,6 +9,7 @@ permissions:
 env:
   TF_VAR_GITHUB_PAT: ${{ secrets.SECRET_GITHUB_PAT }}
   TF_VAR_GITHUB_OWNER: ${{ github.repository_owner }}
+  ARM_USE_MSI: true
   TF_LOG: error
       
 jobs: 
@@ -20,7 +21,7 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
-      
+
     - name: 'Az CLI login'
       uses: azure/login@v1
       with:
