@@ -9,7 +9,7 @@ on:
 permissions:
   contents: read
   pages: write
-  # id-token: write
+  id-token: write
 
 env:
   TF_VAR_GITHUB_PAT: ${{ secrets.SECRET_GITHUB_PAT }}
