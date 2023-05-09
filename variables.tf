@@ -27,10 +27,16 @@ variable "location" {
   default     = "francecentral"
 }
 
-variable "name-core" {
-  description = "The core part of resources naming"
+variable "name-core-terraform" {
+  description = "The core naming part for terraform-related resources"
   type        = string
   default     = "marthamain"
+}
+
+variable "name-core-analytics" {
+  description = "The core naming part for analytics-related resources"
+  type        = string
+  default     = "marthaanalytics"
 }
 
 variable "suffix" {
@@ -53,14 +59,4 @@ variable "subscription_id" {
   description = "Azure subscription ID"
   type        = string
   default     = "ac10c819-2836-4539-a08d-cf5c42a71d7a"
-}
-
-#---------------------------------------------------------------
-# Tags
-#---------------------------------------------------------------
-
-variable "environment" {
-  type        = string
-  description = "The environment to be built"
-  default     = "terraform"
 }
