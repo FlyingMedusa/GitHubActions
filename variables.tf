@@ -39,6 +39,12 @@ variable "name-core-analytics" {
   default     = "marthaanalytics"
 }
 
+variable "name-core-vm-spawner" {
+  description = "The core naming part for vm spawning-related resources"
+  type        = string
+  default     = "marthavms"
+}
+
 variable "suffix" {
   description = "The suffix part of resources naming"
   type        = string

@@ -23,3 +23,16 @@ module "analytics" {
   subscription_id = var.subscription_id
   environment     = "dev-analytics"
 }
+
+
+module "vms" {
+  source    = "./vm-spawn"
+  providers = { azurerm = azurerm }
+
+  location        = var.location
+  name-core       = var.name-core-vm-spawner
+  suffix          = var.suffix
+  tenant_id       = var.tenant_id
+  subscription_id = var.subscription_id
+  environment     = "dev-vms"
+}
